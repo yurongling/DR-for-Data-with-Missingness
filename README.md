@@ -39,6 +39,7 @@ BC_UMAP_x = umap.UMAP(n_components = k).fit_transform(BC_df) # BC-UMAP
 Gram = BC_Gram(df,M)
 
 bc_gplvm = gpflow.models.GPLVM_Gram( Y=df, latent_dim = 2, Gram= Gram)
+
 opt = gpflow.train.ScipyOptimizer()
 opt.minimize(bc_gplvm, maxiter=1000)  
 BC_GPLVM_x = bc_gplvm.X.value #BC-GPLVM
